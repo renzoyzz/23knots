@@ -6,10 +6,10 @@
 Make sure you enable option to "Use git from Windows command line".
 
 
-## Install Node and NPM
+## Install NodeJS and NPM
 [Install Node Here](https://nodejs.org/dist/v7.0.0/node-v7.0.0-x64.msi)
 
-Open a cmd.exe and use these command.
+Open a cmd.exe and use these commands after installing NodeJS.
 ```
 npm install npm -g
 npm install typescript -g
@@ -32,7 +32,7 @@ git clone https://github.com/renzoyzz/23knots.git
 
 ## Open In Visual Studio Code
 1. Shift+RightClick inside folder and select "open in Visual Studio Code".
-1. If you see code. Good Job!
+1. If you see folders with code. Good Job!
 
 ## Running the Game
 1. Open command line in the folder just like in step 2 of Clone Repository.
