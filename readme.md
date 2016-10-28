@@ -1,19 +1,23 @@
-Install Node
-(https://nodejs.org/dist/v7.0.0/node-v7.0.0-x64.msi)
+# Initial Setup
 
-Install Visual Studio Code
-(https://code.visualstudio.com/docs/?dv=win)
+## Install Git
+[Install Git Here](https://github.com/git-for-windows/git/releases/download/v2.10.1.windows.1/Git-2.10.1-64-bit.exe)
 
-open Visual Studio Code
+## Install Node
+[Install Node Here](https://nodejs.org/dist/v7.0.0/node-v7.0.0-x64.msi)
 
-Create a Folder where you want the game to be placed.
+## Install Visual Studio Code
+[Install Visual Studio Code Here](https://code.visualstudio.com/docs/?dv=win)
 
-Open folder in Visual Studio Code
 
-open cmd.exe
+## Open Visual Studio Code
+1. Create a Folder where you want the game to be placed.
+1. Open Visual Studio Code
+1. Open folder in Visual Studio Code
+1. open cmd.exe
 
 ```
-
+git clone https://github.com/renzoyzz/23knots.git
 
 ```
 
