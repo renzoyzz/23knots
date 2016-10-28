@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <canvas id="canvas" width="1280" height="720"></canvas>
+    <div id="fps-counter"></div>
+
+
+	<script src="node_modules/systemjs/dist/system.js"></script>
+	<script src="node_modules/typescript/lib/typescript.js"></script>
+	<script>
+      System.config({
+        transpiler: 'typescript',
+        packages: {
+          src: {
+            defaultExtension: 'ts'
+          }
+        } 
+      });
+      System
+        .import('src/main')
+        .then(null, console.error.bind(console));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+#canvas {
+    height: 100vh;
+    margin: auto;
+    display: block;
+}
+
+#fps-counter {
+    position: fixed;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+    color: black;
+    font-weight: 600;
+}
