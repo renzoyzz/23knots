@@ -49,8 +49,8 @@ export class Player implements Entity {
                     this.direction = Direction.RIGHT;
                     break;
             }
-            this.ticks = 0;
-
+            this.ticks=0;
+        }
         switch (this.direction) {
             case Direction.UP:
                 this.shift(0, this.speed * -1);
@@ -80,6 +80,7 @@ export class Player implements Entity {
                 this.shift(this.speed, 0);
                 break;
         }
+        this.ticks++;
     }
 
     public shift(xDelta: number, yDelta: number) {
