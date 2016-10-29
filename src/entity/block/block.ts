@@ -1,8 +1,10 @@
 import { Entity } from '../index'
 
 export class Block implements Entity {
-    public xPos: number;
-    public yPos: number;
+    public startXPos: number;
+    public startYPos: number;
+    public endXPos: number;
+    public endYPos: number;
     public width: number = 50;
     public height: number = 50;
     public speed: number = 1;
@@ -10,8 +12,8 @@ export class Block implements Entity {
     private direction: Direction = Direction.RIGHT;
 
     constructor(xPos: number, yPos: number) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.endXPos = xPos;
+        this.endYPos = yPos;
     }
 
 
@@ -46,7 +48,6 @@ export class Block implements Entity {
                 break;
             case Direction.DOWN:
                 this.shift(0, this.speed)
-
                 break;
             case Direction.LEFT:
                 this.shift(this.speed * -1, 0)
@@ -59,12 +60,11 @@ export class Block implements Entity {
     }
 
     public shift(xDelta: number, yDelta: number) {
-        this.xPos += xDelta;
-        this.yPos += yDelta;
+        this.startXPos = this.endXPos;
+        this.startYPos = this.endYPos;
+        this.endXPos += xDelta;
+        this.endYPos += yDelta;
     }
-
-
-
 
 }
 

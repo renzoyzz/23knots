@@ -10,7 +10,8 @@ export class Main {
     public paused: boolean = false;
     public gameLoop: number;
     public entities: Map<string, Entity> = new Map();
-    public ticks: number = 60;
+    public ticks: number = 1000 / 60;
+    public lastTick: number = new Date().getTime();
 
     constructor() {
         Main.instance = this;
@@ -20,12 +21,9 @@ export class Main {
         this.renderHandler = new RenderHandler();
         this.entities.set('block', new Block(250, 250));
         this.gameLoop = this.initializeGameLoop();
-
     }
 
     initializeGameLoop(): number {
-
-        let ticks = this.ticks;
         return setInterval(() => {
             if (this.paused) {
                 return;
@@ -33,8 +31,8 @@ export class Main {
             this.entities.forEach((entity) => {
                 entity.tick();
             })
-
-        }, 1000 / this.ticks);
+            this.lastTick = new Date().getTime();
+        }, this.ticks);
     }
 }
 

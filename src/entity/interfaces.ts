@@ -1,6 +1,8 @@
 export interface Entity {
-    xPos: number;
-    yPos: number;
+    startXPos: number;
+    startYPos: number;
+    endXPos: number;
+    endYPos: number;
     width: number;
     height: number;
     tick(): void;

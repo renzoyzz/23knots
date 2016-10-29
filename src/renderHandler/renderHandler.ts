@@ -8,6 +8,7 @@ export class RenderHandler {
     public canvasHeight: number;
     public renderLoop: number;
     public frames: number;
+    public currentTime: number;
 
 
     constructor() {
@@ -24,7 +25,7 @@ export class RenderHandler {
             this.frames = 0;
         }, 1000)
         this.renderLoop = setInterval(() => {
-            if(Main.instance.paused){
+            if (Main.instance.paused) {
                 return;
             }
             this.render();
@@ -32,18 +33,28 @@ export class RenderHandler {
         }, 0);
     }
 
-
-    public render() {
+    private clearCanvas() {
         this.ctx.beginPath();
         this.ctx.rect(0, 0, this.canvasWidth, this.canvasHeight);
         this.ctx.fillStyle = "black";
         this.ctx.fill();
+    }
+
+    public render() {
+        this.clearCanvas();
+        let interpolateVal = (Main.instance.lastTick - new Date().getTime()) / Main.instance.ticks;
         Main.instance.entities.forEach((entity) => {
-            this.ctx.beginPath();
-            this.ctx.rect(entity.xPos, entity.yPos, entity.width, entity.height);
-            this.ctx.fillStyle = "green";
-            this.ctx.fill();
+            this.interpolate(entity, interpolateVal);
         })
+    }
+
+    private interpolate(entity: Entity, interpolateVal: number) {
+        let xPos = ((entity.startXPos - entity.endXPos) * interpolateVal) + entity.startXPos;
+        let yPos = ((entity.startYPos - entity.endYPos) * interpolateVal) + entity.startYPos;
+        this.ctx.beginPath();
+        this.ctx.rect(xPos, yPos, entity.width, entity.height);
+        this.ctx.fillStyle = "green";
+        this.ctx.fill();
     }
 
 
