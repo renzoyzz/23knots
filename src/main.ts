@@ -23,6 +23,7 @@ export class Main {
         this.renderHandler = new RenderHandler();
         this.audioHandler = new AudioHandler();
         this.entities.set('block', new Block(250, 250));
+         this.entities.set('block1', new Block(350, 250));
         this.gameLoop = this.initializeGameLoop();
     }
 
