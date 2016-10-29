@@ -1,4 +1,3 @@
-import { KeyBindingsJSON } from './index';
 
 export class InputHandler {
     public pressedKeys: Map<number, boolean>
@@ -13,7 +12,7 @@ export class InputHandler {
 
     loadKeyBindings() {
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('GET', './keybindings.json', false);
+        xmlhttp.open('GET', '/config/keybindings.json', false);
         xmlhttp.overrideMimeType('application/json');
         xmlhttp.send();
         this.keyBidings = JSON.parse(xmlhttp.responseText);
@@ -29,4 +28,15 @@ export class InputHandler {
 
     }
 
+}
+
+interface KeyBindingsJSON {
+    basic: BasicKeyBindings
+}
+
+interface BasicKeyBindings {
+    up: number,
+    down: number,
+    left: number,
+    right: number
 }

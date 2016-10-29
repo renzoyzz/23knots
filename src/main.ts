@@ -2,6 +2,7 @@ import { RenderHandler } from './renderHandler/index';
 import { Entity } from './entity/index';
 import { Block } from './entity/block/index'
 import { AudioHandler } from './audioHandler/index';
+import { InputHandler } from './inputHandler/index'
 
 export class Main {
 
@@ -9,6 +10,7 @@ export class Main {
     public canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('canvas');
     public renderHandler: RenderHandler;
     public audioHandler: AudioHandler;
+    public inputHandler: InputHandler;
     public paused: boolean = false;
     public gameLoop: number;
     public entities: Map<string, Entity> = new Map();
@@ -20,6 +22,7 @@ export class Main {
         window.onresize = () => {
             this.canvas.width = (this.canvas.height / 9) * 16;
         }
+        this.inputHandler = new InputHandler();
         this.renderHandler = new RenderHandler();
         this.audioHandler = new AudioHandler();
         this.entities.set('block', new Block(250, 250));
