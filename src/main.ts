@@ -1,6 +1,7 @@
 import { RenderHandler } from './renderHandler/index';
-import { Entity, Block } from './entity/index';
-import { AudioHandler } from './audioHandler/index'
+import { Entity } from './entity/index';
+import { Block } from './entity/block/index'
+import { AudioHandler } from './audioHandler/index';
 
 export class Main {
 
