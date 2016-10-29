@@ -1,12 +1,14 @@
 import { RenderHandler } from './renderHandler/index';
 import { Entity } from './entity/index';
 import { Block } from './entity/block/index'
+import { AudioHandler } from './audioHandler/index'
 
 export class Main {
 
     public static instance: Main;
     public canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('canvas');
-    public renderHandler: RenderHandler
+    public renderHandler: RenderHandler;
+    public audioHandler: AudioHandler;
     public paused: boolean = false;
     public gameLoop: number;
     public entities: Map<string, Entity> = new Map();
@@ -19,6 +21,7 @@ export class Main {
             this.canvas.width = (this.canvas.height / 9) * 16;
         }
         this.renderHandler = new RenderHandler();
+        this.audioHandler = new AudioHandler();
         this.entities.set('block', new Block(250, 250));
         this.gameLoop = this.initializeGameLoop();
     }
@@ -37,3 +40,4 @@ export class Main {
 }
 
 new Main();
+

@@ -46,6 +46,7 @@ export class RenderHandler {
         Main.instance.entities.forEach((entity) => {
             this.interpolate(entity, interpolateVal);
         })
+        
     }
 
     private interpolate(entity: Entity, interpolateVal: number) {
