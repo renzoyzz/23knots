@@ -1,42 +1,40 @@
 import { RenderHandler } from './renderHandler/index';
+import { Entity } from './entity/index';
+import { Block } from './entity/block/index'
 
 export class Main {
 
-    public static instance:Main;
+    public static instance: Main;
     public canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('canvas');
-    public fpsCounter: HTMLElement = <HTMLElement>document.getElementById('fps-counter');
     public renderHandler: RenderHandler
-    public running: boolean = true;
-    public ticksPerSec: number = 60;
-    public frames: number = 0;    
-    public interval: number;
-    public seconds: number;
+    public paused: boolean = false;
+    public gameLoop: number;
+    public entities: Map<string, Entity> = new Map();
+    public ticks: number = 60;
 
     constructor() {
         Main.instance = this;
         window.onresize = () => {
-            this.canvas.width = (this.canvas.height/9) * 16;
+            this.canvas.width = (this.canvas.height / 9) * 16;
         }
-
-        
-
         this.renderHandler = new RenderHandler();
-        this.interval = this.getGameLoop();
+        this.entities.set('block', new Block(250, 250));
+        this.gameLoop = this.initializeGameLoop();
+
     }
 
-    getGameLoop(): number {
-        this.seconds = Math.floor(new Date().getTime()/1000); 
+    initializeGameLoop(): number {
+
+        let ticks = this.ticks;
         return setInterval(() => {
-            let time = Math.floor(new Date().getTime()/1000);
-            
-            if(this.seconds < time){
-                this.seconds = time;
-                this.fpsCounter.innerText = `FPS:${this.frames}`;
-                this.frames = 0;
+            if (this.paused) {
+                return;
             }
-            this.renderHandler.render();
-            this.frames++;
-        }, 0);
+            this.entities.forEach((entity) => {
+                entity.tick();
+            })
+
+        }, 1000 / this.ticks);
     }
 }
 
