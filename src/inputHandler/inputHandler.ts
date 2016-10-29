@@ -1,13 +1,13 @@
+import { Key, BasicKeys } from './index';
 
 export class InputHandler {
-    public pressedKeys: Map<number, boolean>
-    public keyBidings: KeyBindingsJSON
+    public basicKeys: Map<string, Key> = new Map();
+    public keyBidings: KeyBindingsJSON;
 
     constructor() {
         this.loadKeyBindings();
         window.onkeydown = this.handleKeyDownEvent;
         window.onkeyup = this.handleKeyDownEvent;
-
     }
 
     loadKeyBindings() {
@@ -16,18 +16,35 @@ export class InputHandler {
         xmlhttp.overrideMimeType('application/json');
         xmlhttp.send();
         this.keyBidings = JSON.parse(xmlhttp.responseText);
-        console.log(this.loadKeyBindings);
+        for(let binding in this.keyBidings.basic){
+            let keyCode = this.keyBidings.basic[binding];
+            this.basicKeys.set(binding, new Key(keyCode));
+        }
     }
+
+    isBasicKeyPressed(key:string){
+        return this.basicKeys.get(key).getPressed();
+    }
+
 
 
     handleKeyDownEvent(e: KeyboardEvent) {
-
+        for(let val in this.basicKeys){
+            let key = this.basicKeys.get(val);
+            if(key.keyCode == e.keyCode){
+                key.setPressed(true);
+            }
+        }
     }
 
     handleKeyUpEvent(e: KeyboardEvent) {
-
+        for(let val in this.basicKeys){
+            let key = this.basicKeys.get(val);
+            if(key.keyCode == e.keyCode){
+                key.setPressed(false);
+            }
+        }
     }
-
 }
 
 interface KeyBindingsJSON {
@@ -35,8 +52,6 @@ interface KeyBindingsJSON {
 }
 
 interface BasicKeyBindings {
-    up: number,
-    down: number,
-    left: number,
-    right: number
+    [key: string]: number
 }
+

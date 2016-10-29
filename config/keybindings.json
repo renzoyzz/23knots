@@ -1,8 +1,8 @@
 {
     "basic": {
-        "up": 87,
-        "down": 83,
-        "left": 65,
-        "right": 68
+        "UP": 87,
+        "DOWN": 83,
+        "LEFT": 65,
+        "RIGHT": 68
     }
 }
