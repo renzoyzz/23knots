@@ -16,32 +16,34 @@ export class InputHandler {
         xmlhttp.overrideMimeType('application/json');
         xmlhttp.send();
         this.keyBidings = JSON.parse(xmlhttp.responseText);
-        for(let binding in this.keyBidings.basic){
+        for (let binding in this.keyBidings.basic) {
             let keyCode = this.keyBidings.basic[binding];
             this.basicKeys.set(binding, new Key(keyCode));
         }
     }
 
-    public isBasicKeyPressed(key:string){
+    public isBasicKeyPressed(key: string) {
         return this.basicKeys.get(key).getPressed();
     }
 
 
 
     private handleKeyDownEvent(e: KeyboardEvent) {
-        for(let val in this.basicKeys){
+        for (let val in this.basicKeys) {
             let key = this.basicKeys.get(val);
-            if(key.keyCode == e.keyCode){
+            if (key.keyCode == e.keyCode) {
                 key.setPressed(true);
+                break;
             }
         }
     }
 
     private handleKeyUpEvent(e: KeyboardEvent) {
-        for(let val in this.basicKeys){
+        for (let val in this.basicKeys) {
             let key = this.basicKeys.get(val);
-            if(key.keyCode == e.keyCode){
+            if (key.keyCode == e.keyCode) {
                 key.setPressed(false);
+                break;
             }
         }
     }
