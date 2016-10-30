@@ -10,7 +10,7 @@ export class InputHandler {
         window.onkeyup = this.handleKeyDownEvent;
     }
 
-    loadKeyBindings() {
+    private loadKeyBindings() {
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.open('GET', '/config/keybindings.json', false);
         xmlhttp.overrideMimeType('application/json');
@@ -22,13 +22,13 @@ export class InputHandler {
         }
     }
 
-    isBasicKeyPressed(key:string){
+    public isBasicKeyPressed(key:string){
         return this.basicKeys.get(key).getPressed();
     }
 
 
 
-    handleKeyDownEvent(e: KeyboardEvent) {
+    private handleKeyDownEvent(e: KeyboardEvent) {
         for(let val in this.basicKeys){
             let key = this.basicKeys.get(val);
             if(key.keyCode == e.keyCode){
@@ -37,7 +37,7 @@ export class InputHandler {
         }
     }
 
-    handleKeyUpEvent(e: KeyboardEvent) {
+    private handleKeyUpEvent(e: KeyboardEvent) {
         for(let val in this.basicKeys){
             let key = this.basicKeys.get(val);
             if(key.keyCode == e.keyCode){
