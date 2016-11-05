@@ -7,17 +7,19 @@
     "frame": true,
     "toolbar": false
   },
-  "dependencies": {
-    "lite-server": "^2.2.2",
-    "nw-builder": "^3.1.2",
-    "systemjs": "^0.19.40",
-    "typescript": "^2.0.6",
-    "typings": "^1.4.0"
-  },
+  "dependencies": {},
   "scripts": {
     "debug": "lite-server",
     "build": "nwbuild -r ./"
   },
   "author": "Renzo Zevallos",
-  "license": "MIT License"
+  "license": "MIT License",
+  "devDependencies": {
+    "@types/nw.gui": "0.0.20",
+    "lite-server": "^2.2.2",
+    "nw-builder": "^3.1.2",
+    "systemjs": "^0.19.40",
+    "typescript": "^2.0.6",
+    "typings": "^1.4.0"
+  }
 }
