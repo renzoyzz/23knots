@@ -1,4 +1,5 @@
 import { Key, BasicKeys } from './index';
+import { Main } from '../main';
 
 export class InputHandler {
     public basicKeys: Map<string, Key> = new Map();
@@ -6,11 +7,44 @@ export class InputHandler {
 
     constructor() {
         this.loadKeyBindings();
-        window.onkeydown = this.handleKeyDownEvent;
-        window.onkeyup = this.handleKeyDownEvent;
+
+        window.onkeydown = (e: KeyboardEvent) => {
+            this.basicKeys.forEach((val, index, map) => {
+                let key = this.basicKeys.get(index);
+                if (key.keyCode == e.keyCode) {
+                    key.setPressed(true);
+                    return;
+                }
+            });
+        }
+
+        window.onkeyup = (e: KeyboardEvent) => {
+            this.basicKeys.forEach((val, index, map) => {
+                let key = this.basicKeys.get(index);
+                if (key.keyCode == e.keyCode) {
+                    key.setPressed(false);
+                    return;
+                }
+            });
+
+        }
+
+        window.onblur = () => {
+            this.basicKeys.forEach((val, index, map) => {
+                let key = this.basicKeys.get(index);
+                key.setPressed(false);
+            });
+        }
+
+        window.oncontextmenu = (e: PointerEvent) => {
+            this.basicKeys.forEach((val, index, map) => {
+                let key = this.basicKeys.get(index);
+                key.setPressed(false);
+            });
+        }
     }
 
-    private loadKeyBindings() {
+    private loadKeyBindings(): void {
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.open('GET', '/config/keybindings.json', false);
         xmlhttp.overrideMimeType('application/json');
@@ -22,31 +56,10 @@ export class InputHandler {
         }
     }
 
-    public isBasicKeyPressed(key: string) {
+    public isBasicKeyPressed(key: string): boolean {
         return this.basicKeys.get(key).getPressed();
     }
 
-
-
-    private handleKeyDownEvent(e: KeyboardEvent) {
-        for (let val in this.basicKeys) {
-            let key = this.basicKeys.get(val);
-            if (key.keyCode == e.keyCode) {
-                key.setPressed(true);
-                break;
-            }
-        }
-    }
-
-    private handleKeyUpEvent(e: KeyboardEvent) {
-        for (let val in this.basicKeys) {
-            let key = this.basicKeys.get(val);
-            if (key.keyCode == e.keyCode) {
-                key.setPressed(false);
-                break;
-            }
-        }
-    }
 }
 
 interface KeyBindingsJSON {

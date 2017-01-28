@@ -9,7 +9,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "debug": "lite-server",
+    "start": "lite-server",
     "build": "nwbuild -r ./"
   },
   "author": "Renzo Zevallos",

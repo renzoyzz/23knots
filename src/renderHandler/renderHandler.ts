@@ -1,5 +1,5 @@
 import { Main } from '../main';
-import { Entity } from '../entity/index'
+import { Entity } from '../entity/interfaces'
 
 export class RenderHandler {
     public fpsCounter: HTMLElement = <HTMLElement>document.getElementById('fps-counter');

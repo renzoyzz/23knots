@@ -1,8 +1,8 @@
 import { RenderHandler } from './renderHandler/index';
-import { Entity } from './entity/index';
-import { Block } from './entity/block/index'
+import { Player, Block } from './entity/index';
+import { Entity } from './entity/interfaces';
 import { AudioHandler } from './audioHandler/index';
-import { InputHandler } from './inputHandler/index'
+import { InputHandler } from './inputHandler/index';
 
 export class Main {
 
@@ -27,6 +27,8 @@ export class Main {
         this.audioHandler = new AudioHandler();
         this.entities.set('block', new Block(250, 250));
         this.entities.set('block1', new Block(350, 250));
+        this.entities.set('player1', new Player(400, 200));
+        
         this.gameLoop = this.initializeGameLoop();
     }
 
