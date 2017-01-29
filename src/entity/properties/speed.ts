@@ -1,4 +1,4 @@
-import { DirectionalForce } from 'src/entity/physics/directionalForce';
+import { Force } from 'src/entity/physics/directionalForce';
 
 export class Speed {
     public xSpeed: number;
@@ -13,7 +13,7 @@ export class Speed {
         this.acceleration = acceleration;
     }
 
-    public applyDirectionalForce(dirForce: DirectionalForce){
+    public applyDirectionalForce(dirForce: Force){
          this.xSpeed += ((dirForce.getXForce() * this.maxSpeed) - this.xSpeed) * this.acceleration;
         this.ySpeed += ((dirForce.getYForce() * this.maxSpeed) - this.ySpeed) * this.acceleration;  
     }

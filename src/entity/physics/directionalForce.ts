@@ -1,4 +1,4 @@
-export class DirectionalForce {
+export class Force {
     
     private xForce: number = 0;
     private yForce: number = 0;
