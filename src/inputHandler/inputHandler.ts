@@ -1,9 +1,12 @@
 import { Key, BasicKeys } from './index';
 import { Main } from 'src/main';
+import { Entity } from 'src/entity/interfaces';
 
 export class InputHandler {
+    private entities: Map<string, Entity> = Main.instance.entities;
     public basicKeys: Map<string, Key> = new Map();
     public keyBidings: KeyBindingsJSON;
+
 
     constructor() {
         this.loadKeyBindings();
@@ -13,6 +16,7 @@ export class InputHandler {
                 let key = this.basicKeys.get(index);
                 if (key.keyCode == e.keyCode) {
                     key.setPressed(true);
+                    this.executeInput();
                     return;
                 }
             });
@@ -23,16 +27,17 @@ export class InputHandler {
                 let key = this.basicKeys.get(index);
                 if (key.keyCode == e.keyCode) {
                     key.setPressed(false);
+                    this.executeInput();
                     return;
                 }
             });
-
         }
 
         window.onblur = () => {
             this.basicKeys.forEach((val, index, map) => {
                 let key = this.basicKeys.get(index);
                 key.setPressed(false);
+                this.executeInput();
             });
         }
 
@@ -40,6 +45,7 @@ export class InputHandler {
             this.basicKeys.forEach((val, index, map) => {
                 let key = this.basicKeys.get(index);
                 key.setPressed(false);
+                this.executeInput();
             });
         }
     }
@@ -62,6 +68,10 @@ export class InputHandler {
 
     public isBasicKeyPressedAndUnused(key: string): boolean {
         return this.basicKeys.get(key).getKeyUsed();
+    }
+
+    public executeInput(): void {
+        this.entities.forEach((entity) => {entity.handleInput()})
     }
 
 }

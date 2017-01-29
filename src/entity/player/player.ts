@@ -12,7 +12,7 @@ export class Player implements Entity {
     public width: number = 100;
     public height: number = 100;
     public acceleration: number = .2;
-    public speed: Speed = new Speed(0, 0, 10, .2);
+    public speed: Speed = new Speed(0, 0, 7, .2);
     private input: Input = new Input();
     private movement: Movement = new Movement(this.speed);
 
@@ -22,9 +22,13 @@ export class Player implements Entity {
         this.endYPos = yPos;
     }
 
-    tick(): void {
+    public tick(): void {
         this.input.applyMovementInput(this);
         this.movement.shift(this);
+    }
+
+    public handleInput(): void{
+        this.input.applyMovementInput(this);
     }
 }
 

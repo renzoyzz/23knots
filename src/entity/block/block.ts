@@ -66,6 +66,10 @@ export class Block implements Entity {
         this.endYPos += yDelta;
     }
 
+    public handleInput():void{
+
+    }
+
 }
 
 enum Direction {

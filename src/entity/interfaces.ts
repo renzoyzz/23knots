@@ -6,4 +6,5 @@ export interface Entity {
     width: number;
     height: number;
     tick(): void;
+    handleInput(): void;
 }
