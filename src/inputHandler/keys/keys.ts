@@ -1,5 +1,6 @@
 export class Key {
     public keyCode: number
+    private keyUsed: boolean = false;
     private pressed: boolean = false;
 
     constructor(keyCode: number) {
@@ -13,4 +14,21 @@ export class Key {
     getPressed(){
         return this.pressed;
     }
+    
+    public setKeyUsed(){
+        this.keyUsed = true;
+    }
+
+    public getKeyUsed(): boolean {
+        if(!this.pressed){
+            this.keyUsed = false;
+            return false;
+        }
+        if(this.keyUsed){
+            return false;
+        }
+        this.keyUsed = true;
+        return true;
+    }
+
 }

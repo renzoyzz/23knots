@@ -60,6 +60,10 @@ export class InputHandler {
         return this.basicKeys.get(key).getPressed();
     }
 
+    public isBasicKeyPressedAndUnused(key: string): boolean {
+        return this.basicKeys.get(key).getKeyUsed();
+    }
+
 }
 
 interface KeyBindingsJSON {

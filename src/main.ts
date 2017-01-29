@@ -3,9 +3,9 @@ import { Player, Block } from './entity/index';
 import { Entity } from './entity/interfaces';
 import { AudioHandler } from './audioHandler/index';
 import { InputHandler } from './inputHandler/index';
+import { Debug } from './debug';
 
 export class Main {
-
     public static instance: Main;
     public canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('canvas');
     public renderHandler: RenderHandler;
@@ -28,8 +28,8 @@ export class Main {
         this.entities.set('block', new Block(250, 250));
         this.entities.set('block1', new Block(350, 250));
         this.entities.set('player1', new Player(400, 200));
-        
         this.gameLoop = this.initializeGameLoop();
+        new Debug();
     }
 
     initializeGameLoop(): number {

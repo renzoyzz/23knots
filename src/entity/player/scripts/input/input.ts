@@ -12,22 +12,20 @@ export class Input {
         let down = this.inputHandler.isBasicKeyPressed(BasicKeys.DOWN);
         let left = this.inputHandler.isBasicKeyPressed(BasicKeys.LEFT);
         let right = this.inputHandler.isBasicKeyPressed(BasicKeys.RIGHT);
-
+        if(this.inputHandler.isBasicKeyPressedAndUnused(BasicKeys.BOOM))
+            Main.instance.audioHandler.addSound('test-sound.mp3');
         if (up || down || left || right) {
             let xChange = 0;
             let yChange = 0;
-            if (up) {
+            if (up) 
                 yChange--;
-            }
-            if (down) {
+            if (down) 
                 yChange++;
-            }
-            if (right) {
+            if (right) 
                 xChange++;
-            }
-            if (left) {
+            if (left) 
                 xChange--;
-            }
+                
             force.setDirectionalForces(xChange, yChange)
         }
         player.speed.applyDirectionalForce(force);
