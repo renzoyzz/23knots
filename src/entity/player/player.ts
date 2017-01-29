@@ -24,8 +24,8 @@ export class Player implements Entity {
 
 
     tick(): void {
-        let dirForce = this.input.getMovementInput(this);
-        this.speed.applyDirectionalForce(dirForce);
+        let force = this.input.getMovementInput(this);
+        this.speed.applyDirectionalForce(force);
         this.movement.shift(this);
     }
 

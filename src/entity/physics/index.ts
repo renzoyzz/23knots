@@ -1,1 +1,1 @@
-export * from './directionalForce';
+export * from './force';
