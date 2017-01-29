@@ -1,7 +1,7 @@
-import { Main } from '../../../../main';
-import { BasicKeys } from '../../../../inputHandler/basicKeys/index';
-import { Player } from '../../player';
-import { DirectionalForce } from '../movement/directionalForce';
+import { Main } from 'src/main';
+import { BasicKeys } from 'src/inputHandler/basicKeys/index';
+import { Player } from 'src/entity/player/index';
+import { DirectionalForce } from 'src/entity/physics/directionalForce';
 
 export class Input {
     private inputHandler = Main.instance.inputHandler;

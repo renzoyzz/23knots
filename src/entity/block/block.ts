@@ -1,4 +1,4 @@
-import { Entity } from '../index'
+import { Entity } from 'src/entity/interfaces'
 
 export class Block implements Entity {
     public startXPos: number;

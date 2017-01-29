@@ -1,6 +1,8 @@
-import { Entity } from '../interfaces';
-import { Main } from '../../main';
-import { Input, Movement } from './scripts/index';
+import { Entity } from 'src/entity/interfaces';
+import { Main } from 'src/main';
+import { Input } from './scripts/index';
+import { Speed } from 'src/entity/properties/index';
+import { Movement } from 'src/entity/movement/index';
 
 export class Player implements Entity {
     public startXPos: number;
@@ -10,11 +12,9 @@ export class Player implements Entity {
     public width: number = 100;
     public height: number = 100;
     public acceleration: number = .2;
-    public xSpeed: number = 0;
-    public ySpeed: number = 0;
-    public maxSpeed: number = 10;
+    public speed: Speed = new Speed(0, 0, 10, .2);
     private input: Input = new Input();
-    private movement: Movement = new Movement(this);
+    private movement: Movement = new Movement(this.speed);
 
 
     constructor(xPos: number, yPos: number) {
@@ -25,7 +25,8 @@ export class Player implements Entity {
 
     tick(): void {
         let dirForce = this.input.getMovementInput(this);
-        this.movement.shiftPlayer(dirForce);
+        this.speed.applyDirectionalForce(dirForce);
+        this.movement.shift(this);
     }
 
 }

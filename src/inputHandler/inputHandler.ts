@@ -1,5 +1,5 @@
 import { Key, BasicKeys } from './index';
-import { Main } from '../main';
+import { Main } from 'src/main';
 
 export class InputHandler {
     public basicKeys: Map<string, Key> = new Map();
