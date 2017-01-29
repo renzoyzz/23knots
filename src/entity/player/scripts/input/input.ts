@@ -6,13 +6,8 @@ import { Force } from 'src/entity/physics/index';
 export class Input {
     private inputHandler = Main.instance.inputHandler;
 
-    constructor() {
-
-    }
-
-
-    getMovementInput(player: Player): Force {
-        let result = new Force();
+    public applyMovementInput(player: Player): void {
+        let force = new Force();
         let up = this.inputHandler.isBasicKeyPressed(BasicKeys.UP)
         let down = this.inputHandler.isBasicKeyPressed(BasicKeys.DOWN);
         let left = this.inputHandler.isBasicKeyPressed(BasicKeys.LEFT);
@@ -33,10 +28,9 @@ export class Input {
             if (left) {
                 xChange--;
             }
-            result.setDirectionalForces(xChange, yChange)
+            force.setDirectionalForces(xChange, yChange)
         }
-        return result;
+        player.speed.applyDirectionalForce(force);
     }
-
 }
 

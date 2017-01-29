@@ -22,13 +22,10 @@ export class Player implements Entity {
         this.endYPos = yPos;
     }
 
-
     tick(): void {
-        let force = this.input.getMovementInput(this);
-        this.speed.applyDirectionalForce(force);
+        this.input.applyMovementInput(this);
         this.movement.shift(this);
     }
-
 }
 
 enum Direction {
