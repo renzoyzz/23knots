@@ -1,5 +1,3 @@
-import { Player } from 'src/entity/player/index';
-import { DirectionalForce } from 'src/entity/physics/index';
 import { Speed } from 'src/entity/properties/index';
 import { Entity } from 'src/entity/interfaces';
 export class Movement {
