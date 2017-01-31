@@ -50,8 +50,8 @@ export class RenderHandler {
     }
 
     private interpolate(entity: Entity, interpolateVal: number) {
-        let xPos = ((entity.startXPos - entity.endXPos) * interpolateVal) + entity.startXPos;
-        let yPos = ((entity.startYPos - entity.endYPos) * interpolateVal) + entity.startYPos;
+        let xPos = (((entity.startXPos - entity.endXPos) * interpolateVal) + entity.startXPos) - (entity.width / 2);
+        let yPos = (((entity.startYPos - entity.endYPos) * interpolateVal) + entity.startYPos) - (entity.height / 2);
         this.ctx.beginPath();
         this.ctx.rect(xPos, yPos, entity.width, entity.height);
         this.ctx.fillStyle = "green";

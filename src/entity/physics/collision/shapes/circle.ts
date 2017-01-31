@@ -17,16 +17,16 @@ export class Circle implements Shapes.Point{
         this.radius = circleConstructor.radius;
     }
 
-    public circIntersects(circle: Circle): boolean{
+    public circIntersects(circle: Circle): boolean {
         return Collision.circsIntersect(this, circle);
     }
 
-    public pointIntersects(point: Shapes.Point){
+    public pointIntersects(point: Shapes.Point): boolean {
         return Collision.circPointIntersect(this, point);
     }
 }
 
-export interface CircleConstructor {
+interface CircleConstructor {
     xPos?: number;
     yPos?: number;
     radius?: number;

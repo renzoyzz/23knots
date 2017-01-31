@@ -11,8 +11,15 @@ export class Collision {
         return Collision.getDistance(circle, point) <= circle.radius;
     }
 
+    public static rectIntersects(s0: Shapes.Rectangle, s1: Shapes.Rectangle){
+        return s0.getXRange().rangesIntersect(s1.getXRange()) && s0.getYRange().rangesIntersect(s1.getYRange());
+    }
+
     public static getDistance(point0: Shapes.Point, point1: Shapes.Point): number{
         return Math.sqrt((point1.xPos - point0.xPos)*(point1.xPos - point0.xPos) + (point1.yPos - point0.yPos)*(point1.yPos - point0.yPos));
     }
+
+
+    
 
 }
